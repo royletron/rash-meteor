@@ -82,6 +82,7 @@ body{
   border-bottom: 3px solid #F7DFA3;
   background-color: #FFFFE7;
   background-image: url(/img/white_tile.png);
+  z-index:2;
 }
 .bs-header h1 {
   color: #FFC500;
@@ -141,4 +142,9 @@ body{
 .form-signup input,
 .form-login input[type="password"]{
   margin-bottom: 10px;
+}
+body{height:100%}
+#map-canvas { height: 100%; width:100%; position:absolute; top:0px; left:0px; z-index:0; }
+#map-canvas img {
+max-width: none;
 }

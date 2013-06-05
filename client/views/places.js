@@ -1,13 +1,4 @@
-var centerPoint;
 var uk;
-function centerMap(map)
-{
-    console.log(centerPoint);
-    if(centerPoint == undefined)
-        map.fitBounds(uk);
-    else
-        map.panTo(centerPoint);
-}
 function getMap(id, controls)
 {
     uk = new google.maps.LatLngBounds(new google.maps.LatLng(58.33257, -10.85449), new google.maps.LatLng(50.12058, 2.06543));
@@ -34,11 +25,27 @@ function getMap(id, controls)
         scaleControl: controls
     };
     var map = new google.maps.Map(document.getElementById(id), mapOptions);
-    centerMap(map);
+    if(Session.get("selectedPlace") != undefined)
+        setMarker(map, new google.maps.LatLng(Session.get("selectedPlace").location.jb, Session.get("selectedPlace").location.kb));
+    else
+        map.fitBounds(uk);
     google.maps.event.addDomListener(window, 'resize', function() {
         centerMap(map);
     });
     return map
+}
+function setMarker(map, position)
+{
+    var marker = new google.maps.Marker({
+        map:map,
+        animation: google.maps.Animation.DROP
+    });
+    marker.setVisible(false);
+    marker.setPosition(position);
+    map.panTo(position);
+    centerPoint = position;
+    map.setZoom(15);
+    marker.setVisible(true);
 }
 function setInfo(selectedPlace)
 {
@@ -63,16 +70,11 @@ function setTypeAhead(field, map)
 {
     var input = /** @type {HTMLInputElement} */(document.getElementById(field));
     var autocomplete = new google.maps.places.Autocomplete(input);
-    var marker = new google.maps.Marker({
-        map:map,
-        animation: google.maps.Animation.DROP
-    });
 
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
         var place = autocomplete.getPlace();
         if(place.address_components){
             var address = {first_line: "", second_line: "", local: "", county: "", postcode: ""};
-            marker.setVisible(false);
             var first_line = "";
             $.each(place.address_components, function(idx, addr){
                 $.each(addr.types, function(idx, val){
@@ -109,16 +111,10 @@ function setTypeAhead(field, map)
             if($.inArray("establishment", place.types) > 0)
                 establishment = true;
             address.first_line = first_line;
-            marker.setPosition(place.geometry.location);
-            map.panTo(place.geometry.location);
-            centerPoint = place.geometry.location;
-            map.setZoom(15);
-            marker.setVisible(true);
+            setMarker(map, place.geometry.location);
             Session.set("selectedPlace", {name: place.name, address: address, website: place.website, phone: place.formatted_phone_number, types: place.types, location: place.geometry.location, establishment: establishment, types: place.types, google_id: place.id});
-            setInfo(Session.get("selectedPlace"));
         }
         else{
-            console.log(place);
             var request = {
                 bounds: map.getBounds(),
                 keyword: place.name
@@ -137,12 +133,33 @@ function callback(results, status) {
     console.log(status);
     console.log(results);
 }
+Template.map.rendered = function() {
+    if(!this.rendered){
+        var map = getMap("map-canvas-sm", false);
+        setTypeAhead("place-search", map);
+        this.rendered = false;
+    }
+}
+Template.selectedPlace.hasItem = function() {
+    return Session.get("selectedPlace") != undefined
+}
+Template.selectedPlace.item = function() {
+    return Session.get("selectedPlace");
+}
+Template.selectedPlace.address = function() {
+    var rtn = "";
+    $.each(Session.get("selectedPlace").address, function(idx, addr){
+        if((addr != "") && (idx != "first_line"))
+        {
+            rtn = rtn+"<br>"+addr;
+        }
+    });
+    return rtn;
+}
 
 Template.myplaces.rendered = function() {
     var map = getMap("map-canvas");
 }
 
 Template.addplace.rendered = function() {
-    var map = getMap("map-canvas-sm", false);
-    setTypeAhead("place-search", map);
 }

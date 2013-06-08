@@ -4,6 +4,10 @@
     "branch": "master"
   },
   "packages": {
-    "mini-pages": {}
+    "mini-pages": {},
+    "GraphicsMagick": {},
+    "imagemagick": {
+    	"git" : "https://github.com/royletron/meteor-imagemagick.git"
+    }
   }
 }

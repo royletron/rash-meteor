@@ -6,13 +6,28 @@
   },
   "dependencies": {
     "basePackages": {
-      "mini-pages": {}
+      "mini-pages": {},
+      "GraphicsMagick": {},
+      "imagemagick": {
+        "git": "https://github.com/royletron/meteor-imagemagick.git",
+        "branch": "master"
+      }
     },
     "packages": {
       "mini-pages": {
         "git": "https://github.com/cmather/meteor-mini-pages.git",
         "tag": "v0.3.1",
         "commit": "d218140d37b0dbec975880755c2035ae9e022936"
+      },
+      "GraphicsMagick": {
+        "git": "https://github.com/royletron/graphicsmagick-meteor.git",
+        "tag": "v0.0.2",
+        "commit": "419a868cecd3141a441334dfda3c6e3fe0ea1728"
+      },
+      "imagemagick": {
+        "git": "https://github.com/royletron/meteor-imagemagick.git",
+        "branch": "master",
+        "commit": "38475b90af4fc2f688508d189f2fc82b01c67bba"
       },
       "HTML5-History-API": {
         "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",

@@ -10,4 +10,6 @@ less
 accounts-password
 accounts-facebook
 mini-pages
-jquery
+underscore
+GraphicsMagick
+imagemagick

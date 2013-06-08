@@ -1,5 +1,7 @@
 function logout() {
 	this.done();
+  Session.set("myPlaces", "");
+  Session.set("selectedPlace", "");
 	if(Meteor.user() != null)
 	{
 		var name = Meteor.user().profile.name;
@@ -17,14 +19,26 @@ function load() {
   }
 }
 
+function getPlaces() {
+  Session.set("myPlaces", Places.find({user: Meteor.userId()}).fetch());
+  console.log(Session.get("myPlaces"))
+}
+
+function clearSessions() {
+  Session.set("myPlaces", "");
+  Session.set("selectedPlace", "");
+}
+
 Meteor.pages({
 
     // Page values can be an object of options, a function or a template name string
 
     '/': { to: 'home', as: 'root', nav: 'home' },
-    '/places': { to: 'places', as: 'places', nav: 'places' },
-    '/myplaces': { to: 'myplaces', as: 'myplaces', nav: 'myplaces', layout: 'inverselayout' },
-    '/places/new': { to: 'addplace', as: 'addplace', nav: 'addplace' },
+    '/test': { to: 'test', as: 'test', nav: 'test' },
+    '/places': { to: 'places', as: 'places', nav: 'places', layout: 'inverselayout' },
+    '/judgement': { to: 'newJudgement', as: 'newJudgement', nav: 'newJudgement'},
+    '/myplaces': { to: 'myplaces', as: 'myplaces', nav: 'myplaces', layout: 'inverselayout', before: [getPlaces] },
+    '/places/new': { to: 'addplace', as: 'addplace', nav: 'addplace', before: [clearSessions] },
     '/login': { to: 'login', as: 'login', nav: 'login' },
     '/logout': { to: 'logout', as: 'logout', nav: 'logout', before: [logout] },
     '/signup': { to: 'signup', as: 'signup', nav: 'signup' }

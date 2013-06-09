@@ -328,7 +328,8 @@ function renderPlaces(places, boundsOn)
         tmarker.place = place;
         google.maps.event.addListener(tmarker, 'click', function() {
             Session.set("selectedPlace", tmarker.place);
-            var info = "<h4>"+tmarker.place.name+"</h4><br /><address><strong>"+tmarker.place.address.first_line+"</strong>"+getAddress()+"</address><a class='btn btn-primary'>Go Judge</a>"
+            console.log(tmarker.place);
+            var info = "<h4>"+tmarker.place.name+"</h4><br /><address><strong>"+tmarker.place.address.first_line+"</strong>"+getAddress()+"</address><a href='./judgements/"+tmarker.place.slug+"' class='btn btn-primary'>Go Judge</a>"
             if(infowindow != undefined) 
                 infowindow.close();
             infowindow = new google.maps.InfoWindow({

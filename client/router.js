@@ -29,6 +29,10 @@ function clearSessions() {
   Session.set("selectedPlace", "");
 }
 
+function getPlace() {
+  Session.set("judgementPlace", Places.findOne({slug: this.params.place}));
+}
+
 Meteor.pages({
 
     // Page values can be an object of options, a function or a template name string
@@ -36,7 +40,7 @@ Meteor.pages({
     '/': { to: 'home', as: 'root', nav: 'home' },
     '/test': { to: 'test', as: 'test', nav: 'test' },
     '/places': { to: 'places', as: 'places', nav: 'places', layout: 'inverselayout' },
-    '/judgement': { to: 'newJudgement', as: 'newJudgement', nav: 'newJudgement'},
+    '/judgements/:place': { to: 'judgement', as: 'judgement', nav: 'judgement', before: [getPlace] },
     '/myplaces': { to: 'myplaces', as: 'myplaces', nav: 'myplaces', layout: 'inverselayout', before: [getPlaces] },
     '/places/new': { to: 'addplace', as: 'addplace', nav: 'addplace', before: [clearSessions] },
     '/login': { to: 'login', as: 'login', nav: 'login' },

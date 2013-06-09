@@ -1,0 +1,48 @@
+<template name="judgement">
+	<div class="bs-header">
+		<div class="container">
+			<h1>{{place.name}}</h1>
+			<p>{{place.address.first_line}} {{place.address.local}}</p>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row" style="padding-top:10px">
+			<h2>Your Judgements</h2>
+			{{#each types}}
+				{{> judgementtype}}
+			{{/each}}
+			<a data-toggle="modal" href="#addJudgement" class="btn btn-success">Add judgement</a>
+		</div>
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade in" id="addJudgement">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Add Judgement to {{place.name}}</h4>
+				</div>
+				<div class="modal-body">
+					<label>Select judgement type</label>
+					<select id="judgementType">
+						{{#each allTypes}}
+							<option value="{{_id}}">{{name}}</option>
+						{{/each}}
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button data-dismiss="modal" aria-hidden="true" class="btn btn-danger">Close</button>
+					<a id="saveButton" class="btn btn-success">Save changes</a>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dalog -->
+	</div><!-- /.modal -->
+</template>
+
+<template name="judgementtype">
+	<div class="row">
+		<div class="col col-lg-12">{{name}}<img src="/{{offimage}}" height="40" width="40" /></div>
+	</div>
+</template>

@@ -252,6 +252,9 @@ Template.selectedPlace.hasItem = function() {
 Template.selectedPlace.item = function() {
     return Session.get("selectedPlace");
 }
+Template.selectedPlace.slug = function() {
+    return Places.findOne({google_id: Session.get("selectedPlace").google_id}).slug
+}
 Template.selectedPlace.isAdded = function() {
     if(Session.get("selectedPlace").google_id == "")
         return false

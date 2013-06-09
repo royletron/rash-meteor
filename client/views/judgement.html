@@ -6,12 +6,34 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row" style="padding-top:10px">
-			<h2>Your Judgements</h2>
+		<div class="row">
+			<div class="col col-lg-12">
+				<h2 style="padding-top:10px">Your Judgements</h2>
+			</div>
+		</div>
+		<div class="row">
 			{{#each types}}
 				{{> judgementtype}}
 			{{/each}}
-			<a data-toggle="modal" href="#addJudgement" class="btn btn-success">Add judgement</a>
+		</div>
+		<div class="row">
+			<div class="col col-lg-12">
+				{{#if typesRemain}}
+					<a data-toggle="modal" href="#addJudgement" class="btn btn-success">Add judgement</a>
+				{{else}}
+					<a class="btn btn-success disabled">Add judgement</a>
+				{{/if}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-lg-12">
+				<h2>Collective Judgements</h2>
+			</div>
+		</div>
+		<div class="row">
+			{{#each types}}
+				{{> collectionjudgementtype}}
+			{{/each}}
 		</div>
 	</div>
 
@@ -40,9 +62,41 @@
 		</div><!-- /.modal-dalog -->
 	</div><!-- /.modal -->
 </template>
-
+<template name="userjudgementrating">
+	<a href="#" id="rate1" class="pull-left"><img src="/{{#if rating 1}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" /></a>
+	<a href="#" id="rate2" class="pull-left" style="margin-left:10px"><img src="/{{#if rating 2}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" /></a>
+	<a href="#" id="rate3" class="pull-left" style="margin-left:10px"><img src="/{{#if rating 3}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" /></a>
+	<a href="#" id="rate4" class="pull-left" style="margin-left:10px"><img src="/{{#if rating 4}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" /></a>
+	<a href="#" id="rate5" class="pull-left" style="margin-left:10px"><img src="/{{#if rating 5}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" /></a>
+	<div class="clearfix"></div>
+	{{#if rated}}
+		<p class="text-success">You rated: <strong>{{ratingValue}}</strong> <a id="clearIt">clear</a></p>
+	{{else}}
+		<p class="text-warning">You haven't rated this.</p>
+	{{/if}}
+</template>
+<template name="collectionjudgementrating">
+	<img class="pull-left" src="/{{#if rating 1}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" />
+	<img class="pull-left" style="margin-left:10px" src="/{{#if rating 2}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" />
+	<img class="pull-left" style="margin-left:10px" src="/{{#if rating 3}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" />
+	<img class="pull-left" style="margin-left:10px" src="/{{#if rating 4}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" />
+	<img class="pull-left" style="margin-left:10px" src="/{{#if rating 5}}{{onimage}}{{else}}{{offimage}}{{/if}}" height="30" width="30" />
+	<div class="clearfix"></div>
+	<p class="text-success">Average rating: <strong>{{ratingValue}}</strong></p>
+</template>
 <template name="judgementtype">
-	<div class="row">
-		<div class="col col-lg-12">{{name}}<img src="/{{offimage}}" height="40" width="40" /></div>
+	<div class="col col-lg-4">
+		<div class="panel">
+  			<div class="panel-heading">{{name}}</div>
+  			{{> userjudgementrating}}
+		</div>
+	</div>
+</template>
+<template name="collectionjudgementtype">
+	<div class="col col-lg-4">
+		<div class="panel">
+  			<div class="panel-heading">{{name}}</div>
+  			{{> collectionjudgementrating}}
+		</div>
 	</div>
 </template>

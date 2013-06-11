@@ -11,7 +11,8 @@ accounts-password
 accounts-facebook
 mini-pages
 underscore
-GraphicsMagick
 imagemagick
 urlify
 jquery
+jquery-scrollTo
+filepicker

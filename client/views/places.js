@@ -264,6 +264,9 @@ Template.selectedPlace.isAdded = function() {
 Template.selectedPlace.address = function() {
     return getAddress();
 }
+Template.selectedPlace.rendered = function() {
+    $.scrollTo('#selected-place-panel');
+}
 function getUserLocation(success, error){
     if (navigator.geolocation) navigator.geolocation.getCurrentPosition(function(pos) {
         var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -332,7 +335,9 @@ function renderPlaces(places, boundsOn)
         google.maps.event.addListener(tmarker, 'click', function() {
             Session.set("selectedPlace", tmarker.place);
             console.log(tmarker.place);
-            var info = "<h4>"+tmarker.place.name+"</h4><br /><address><strong>"+tmarker.place.address.first_line+"</strong>"+getAddress()+"</address><a href='./judgements/"+tmarker.place.slug+"' class='btn btn-primary'>Go Judge</a>"
+            var info = "<h4>"+tmarker.place.name+"</h4><br /><address><strong>"+tmarker.place.address.first_line+"</strong>"+getAddress()+"</address>";
+            console.log(Meteor.user());
+            info += "<a href='./place/"+tmarker.place.slug+"' class='btn btn-primary'>View</a>";
             if(infowindow != undefined) 
                 infowindow.close();
             infowindow = new google.maps.InfoWindow({

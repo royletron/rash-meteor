@@ -1,17 +1,17 @@
-Template.judgement.place = function()
+Template.place.place = function()
 {
 	//console.log(Session.get("judgementPlace"))
 	return Session.get("judgementPlace");
 }
-Template.judgement.allTypes = function()
+Template.place.allTypes = function()
 {
 	return typesNotIn();
 }
-Template.judgement.theseTypes = function()
+Template.place.theseTypes = function()
 {
 	return Session.get("judgementTypes");
 }
-Template.judgement.typesRemain = function()
+Template.place.typesRemain = function()
 {
 	console.log(typesNotIn());
 	return typesNotIn().length > 0
@@ -19,14 +19,15 @@ Template.judgement.typesRemain = function()
 function typesNotIn(){
 	return JudgementTypes.find({_id: {$not: {$in: Session.get("judgementPlace").judgements}}}).fetch();
 }
-Template.judgement.types = function()
+Template.place.types = function()
 {
+	console.log(Session.get("judgementPlace"));
 	return JudgementTypes.find({_id: {$in: Session.get("judgementPlace").judgements}}).fetch();
 }
 Template.judgementtype.rendered = function()
 {
 }
-Template.judgement.events({
+Template.place.events({
 	'click #saveButton' : function(e, t){
 		var type = t.find('#judgementType').value
 		Meteor.call("addJudgementTypeToPlace", Session.get("judgementPlace"), type, function(error, result){

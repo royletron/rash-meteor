@@ -15,7 +15,9 @@
       "urlify": {
         "git": "https://github.com/frozeman/meteor-urlify.git",
         "branch": "master"
-      }
+      },
+      "jquery-scrollTo": {},
+      "filepicker": {}
     },
     "packages": {
       "mini-pages": {
@@ -37,6 +39,16 @@
         "git": "https://github.com/frozeman/meteor-urlify.git",
         "branch": "master",
         "commit": "b41c2b191a0ee16d097b147e0fcf2c7cbeba1dae"
+      },
+      "jquery-scrollTo": {
+        "git": "https://github.com/nate-strauser/meteor-jquery.scrollTo.git",
+        "tag": "v0.1.0",
+        "commit": "829354b46fa15a7b5736c7a3a71fdd93d8eea61d"
+      },
+      "filepicker": {
+        "git": "https://github.com/Filepicker/meteor.git",
+        "tag": "v0.3.0",
+        "commit": "dcb6f3779e5fc105520ba06b0392e3a79c73a7e6"
       },
       "HTML5-History-API": {
         "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",

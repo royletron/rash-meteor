@@ -1,0 +1,23 @@
+<template name="ratingsIndex">
+	<div class="container">
+		<div class="row" style="padding-top:10px">
+			<h1>Ratings</h1>
+			<table class="table table-bordered">
+				<tr>
+					<th>Name</th>
+					<th WIDTH="20"></th>
+					<th WIDTH="20"></th>
+				</tr>
+				{{#each ratings}}
+					<tr>
+						<td>{{name}}</td>
+						<td><a href="#"><i class="glyphicon glyphicon-pencil"> </i></a></td>
+						<td><a href="#" class="delete-rating"><i class="glyphicon glyphicon-remove"> </i></a></td>
+					</tr>
+				{{/each}}
+			</table>
+			<input type="text" id="add-rating-name" class="block-level" placeholder="Search for name or postcode" />
+			<a id="add-rating" class="btn btn-primary" href="#">Add rating</a>
+		</div>
+	</div>
+</template>

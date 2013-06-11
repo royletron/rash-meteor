@@ -17,21 +17,31 @@
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav navbar-nav">
 					<li {{#if pageNavEquals 'home'}}class="active"{{/if}}><a href="{{rootPath}}"><i class="glyphicon glyphicon-home"> </i> Home</a></li>
-					<li {{#if pageNavEquals 'places'}}class="active"{{/if}}><a href="{{placesPath}}"><i class="glyphicon glyphicon-map-marker"> </i> Places</a></li>
+					<li class="dropdown {{#if pageNavEquals 'places'}}active{{/if}}">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-map-marker"> </i>Places <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+                  			<li><a href="{{placesPath}}"><i class="glyphicon glyphicon-pushpin"> </i> Places nearby</a></li>
 					{{#if currentUser}}
-          <li {{#if pageNavEquals 'myplaces'}}class="active"{{/if}}><a href="{{myplacesPath}}"><i class="glyphicon glyphicon-globe"> </i> Your Places</a></li>
-          <li {{#if pageNavEquals 'addplace'}}class="active"{{/if}}><a href="{{addplacePath}}"><i class="glyphicon glyphicon-pencil"> </i> Add</a></li>
-						<li class="visible-sm"><a href="#">{{currentUser.profile.name}}</a></li>
-						<li class="visible-sm"><a href="{{logoutPath}}"><i class="glyphicon glyphicon-user"> </i> Logout</a></li>
-					{{else}}
-						<li class="visible-sm"><a href="{{loginPath}}"><i class="glyphicon glyphicon-user"> </i> Login</a></li>
-					{{/if}}
+          					<li><a href="{{myplacesPath}}"><i class="glyphicon glyphicon-globe"> </i> Your Places</a></li>
+          					<li><a href="{{addplacePath}}"><i class="glyphicon glyphicon-pencil"> </i> Add Place</a></li>
+          					{{/if}}
+						</ul>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav pull-right hidden-sm">
 					{{#if currentUser}}
-						<li>
-						<p class="navbar-text">Hey <a href="#" class="navbar-link">{{currentUser.profile.name}}</a></p></li>
-						<li><a href="{{logoutPath}}"><i class="glyphicon glyphicon-user"> </i> Logout</a></li>
+					<li class="dropdown" >
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top:10px; padding-bottom:10px;">{{{getAvatar true}}} {{currentUser.profile.name}} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  	<li><a href="{{logoutPath}}">Logout</a></li>
+                  <li><a data-toggle="modal" href="#avatarUploader">Update name/avatar</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
 					{{else}}
 						<li {{#if pageNavEquals 'login'}}class="active"{{/if}}><a href="{{loginPath}}"><i class="glyphicon glyphicon-user"> </i> Login</a></li>
 					{{/if}}

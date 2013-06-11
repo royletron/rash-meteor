@@ -11,6 +11,8 @@
     },
     "urlify": {
       "git": "https://github.com/frozeman/meteor-urlify.git"
-    }
+    },
+    "jquery-scrollTo": {},
+    "filepicker": {}
   }
 }

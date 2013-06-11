@@ -40,10 +40,11 @@ Meteor.pages({
 
     '/': { to: 'home', as: 'root', nav: 'home' },
     '/test': { to: 'test', as: 'test', nav: 'test' },
-    '/places': { to: 'places', as: 'places', nav: 'places', layout: 'inverselayout', before: [clearSessions] },
-    '/judgements/:place': { to: 'judgement', as: 'judgement', nav: 'judgement', before: [getPlace] },
-    '/myplaces': { to: 'myplaces', as: 'myplaces', nav: 'myplaces', layout: 'inverselayout', before: [getPlaces] },
-    '/places/new': { to: 'addplace', as: 'addplace', nav: 'addplace', before: [clearSessions] },
+    '/places': { to: 'places', as: 'places', nav: 'places', layout: 'inverselayout', before: [clearSessions]   },
+    '/place/:place': { to: 'place', as: 'place', nav: 'places', before: [getPlace] },
+    '/myplaces': { to: 'myplaces', as: 'myplaces', nav: 'places', layout: 'inverselayout', before: [getPlaces] },
+    '/ratings': { to: 'ratingsIndex', as: 'ratingsIndex', nav: 'ratings' },
+    '/places/new': { to: 'addplace', as: 'addplace', nav: 'places', before: [clearSessions] },
     '/login': { to: 'login', as: 'login', nav: 'login' },
     '/logout': { to: 'logout', as: 'logout', nav: 'logout', before: [logout] },
     '/signup': { to: 'signup', as: 'signup', nav: 'signup' }

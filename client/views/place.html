@@ -1,4 +1,4 @@
-<template name="judgement">
+<template name="place">
 	<div class="bs-header">
 		<div class="container">
 			<h1>{{place.name}}</h1>
@@ -6,6 +6,7 @@
 		</div>
 	</div>
 	<div class="container">
+		{{#if currentUser}}
 		<div class="row">
 			<div class="col col-lg-12">
 				<h2 style="padding-top:10px">Your Judgements</h2>
@@ -25,6 +26,7 @@
 				{{/if}}
 			</div>
 		</div>
+		{{/if}}
 		<div class="row">
 			<div class="col col-lg-12">
 				<h2>Collective Judgements</h2>

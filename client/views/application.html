@@ -1,5 +1,6 @@
 <head>
 	<title>rash</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCUivAr6OjpUsntPswZwvi-kMqBcbSQuPw&sensor=true"></script>
 </head>
 
@@ -9,9 +10,15 @@
 <template name="layout">
 	{{> navigation}}
 	{{{yield}}}
+	{{#if currentUser}}
+		{{>avatarUploader}}
+	{{/if}}
 </template>
 
 <template name="inverselayout">
-  {{{yield}}}
+  	{{{yield}}}
 	{{> navigation}}
+	{{#if currentUser}}
+		{{>avatarUploader}}
+	{{/if}}
 </template>

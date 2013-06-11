@@ -1,4 +1,4 @@
-var animal_images = [{name: "calf"}, {name: "chicken"}, {name: "cow"}, {name: "deer"}, {name: "duck"}, {name: "fish1"}, {name: "fish2"}, {name: "fish3"}, {name: "goat"}, {name: "goose"}, {name: "pidgeon"}, {name: "pig"}, {name: "rabbit"}, {name: "sheep"}];
+/*var animal_images = [{name: "calf"}, {name: "chicken"}, {name: "cow"}, {name: "deer"}, {name: "duck"}, {name: "fish1"}, {name: "fish2"}, {name: "fish3"}, {name: "goat"}, {name: "goose"}, {name: "pidgeon"}, {name: "pig"}, {name: "rabbit"}, {name: "sheep"}];
 var animal_path = '/public/img/.animals/';
 var __dirname = path.resolve('.');
 var fs = Npm.require('fs');
@@ -68,5 +68,5 @@ Meteor.startup(function () {
   			console.log('done')
   		else 
   			console.log(err);
-		});*/
-});
+		});
+});*/

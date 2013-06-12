@@ -21,7 +21,9 @@ Meteor.methods({
 			location: options.location,
 			google_id: options.google_id,
 			judgements: [],
-			user: Meteor.userId()
+			user: Meteor.userId(),
+      createdat: moment().unix(),
+      updatedat: moment().unix()
 		})
 	},
 	getPlaceFromSlug: function(slug)

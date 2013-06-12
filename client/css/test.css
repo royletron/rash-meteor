@@ -2,3 +2,39 @@
   background-color: white;
   border-radius: 15px;
 }
+.alizarin{
+  background-color:#C84D52;
+}
+.alizarin-tile{
+  background-image:url('/img/alizarin_tile.png');
+}
+.yellow, .col .yellow{
+  background-color:#FFC500;
+}
+.yellow-tile{
+  background-image:url('/img/yellow_tile.png');
+}
+.going, .col .going{
+  background-color:#CC7076;
+}
+.going-tile{
+  background-image:url('/img/going_tile.png');  
+}
+.apple, .col .apple{
+  background-color:#FFFFE7;
+}
+.apple-tile{
+  background-image:url('/img/apple_tile.png');
+}
+.complexion, .col .complexion{
+  background-color:#F7DFA3;
+}
+.complexion-tile{
+  background-image:url('/img/complex_tile.png');  
+}
+.horva, .col .horva{
+  background-color:#00CBC6;
+}
+.white-tile{
+  background-image:url('/img/white_tile.png');
+}

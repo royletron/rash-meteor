@@ -2,13 +2,17 @@ Template.signup.events({
     'submit #signup-form' : function(e, t) {
       e.preventDefault();
       var email = t.find('#account-email').value
+        , username = t.find('#account-username').value
         , password = t.find('#account-password').value
         , name = t.find('#account-name').value;
 
         // Trim and validate the input
       var profile = new Object();
       profile.name = name;
-      Accounts.createUser({email: email, password: password, profile: profile}, function(err){
+      Accounts.createUser({email: email, 
+                           password: password, 
+                           username: username, 
+                           profile: profile, createdat: moment().unix(), updatedat: moment().unix()}, function(err){
           if (err) {
             Session.set("displayMessage", "error &amp; "+err.reason);
             // Inform the user that account creation failed

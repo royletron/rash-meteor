@@ -7,7 +7,9 @@ Meteor.methods({
 			user: Meteor.userId(),
 			rating: options.rating,
 			place: options.place,
-			judgementtype: options.judgementtype
+			judgementtype: options.judgementtype,
+      createdat: moment().unix(),
+      updatedat: moment().unix()
 		})
 	},
 	clearJudgement: function(type, place)
